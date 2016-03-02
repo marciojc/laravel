@@ -30,6 +30,9 @@ RUN apk add \
 
 RUN sed -i -e 's/memory_limit = 128M/memory_limit = 256M/' /etc/php/php.ini
 
+RUN php -r "readfile('https://getcomposer.org/installer');" | php &&\
+    mv composer.phar /usr/bin/composer && chmod +x /usr/bin/composer
+
 WORKDIR /var/www
 CMD php ./artisan serve --host=0.0.0.0 --port=80
 EXPOSE 80
