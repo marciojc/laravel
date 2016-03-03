@@ -4,7 +4,7 @@ MAINTAINER hitalos <hitalos@gmail.com>
 # Updating general packages
 RUN apk update && apk upgrade
 
-# Installing php and dependencies 
+# Installing php and dependencies
 RUN apk add \
     bash \
     nodejs \
@@ -19,13 +19,12 @@ RUN apk add \
     php-json \
     php-ldap \
     php-mcrypt \
-    php-mssql \
     php-openssl \
     php-pdo_dblib \
     php-pdo_mysql \
     php-pdo_pgsql \
     php-pdo_sqlite \
-    php-pgsql php-phar \
+    php-phar \
     php-xml \
     php-xmlreader \
     php-xmlrpc \
