@@ -1,13 +1,13 @@
-[![Docker Pulls](https://img.shields.io/docker/pulls/hitalos/laravel.svg)](https://hub.docker.com/r/hitalos/laravel/) [![ImageLayers Size](https://img.shields.io/imagelayers/image-size/hitalos/laravel/latest.svg)]()
+![Docker Pulls](https://img.shields.io/docker/pulls/hitalos/laravel.svg)
 
 # laravel
 Docker image to run PHP and Laravel 5.x projects.
 
 ## Tags
 * [**`latest`**:](https://github.com/hitalos/laravel/blob/master/Dockerfile)  
- * `php` 7.0.4
- * `nodejs` 5.9.0
- * `npm` 3.7.3
+ * `php` 7.0.5
+ * `nodejs` 5.10.1
+ * `npm` 3.8.3
 * [**`alpine`**:](https://github.com/hitalos/laravel/blob/alpine/Dockerfile)    
  * `php` 5.6.17
  * `nodejs` 4.3.0
@@ -18,6 +18,12 @@ Docker image to run PHP and Laravel 5.x projects.
 * `mysql`
 * `pgsql`
 * `sqlite`
+
+## Extra supported extensions
+* `exif`
+* `gd`
+* `ldap`
+* `mongodb`
 
 ## Installing
     docker pull hitalos/laravel
@@ -45,3 +51,34 @@ web:
 Then run using this command:
 
     docker-compose up
+
+
+If you want to use a database, you can create your `docker-compose.yml` with two containers.
+```
+web
+    image: hitalos/laravel:latest
+    ports:
+        - 80:80
+    volumes:
+        - ./:/var/www
+    links:
+        - db
+    environment:
+        DB_HOST: db
+        DB_DATABASE: dbname
+        DB_USERNAME: username
+        DB_PASSWORD: p455w0rd
+        DB_CONNECTION: [pgsql or mysql]
+db:
+    image: [postgres or mysql]
+    environment:
+        # with mysql
+        MYSQL_DATABASE: dbname
+        MYSQL_USER: username
+        MYSQL_PASSWORD: p455w0rd
+
+        # with postgres
+        POSTGRES_DB: dbname
+        POSTGRES_USER: username
+        POSTGRES_PASSWORD: p455w0rd
+```
