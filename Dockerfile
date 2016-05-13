@@ -7,6 +7,7 @@ RUN apk update && apk upgrade
 # Installing php and dependencies
 RUN apk add \
     bash \
+    git \
     nodejs \
     php-ctype \
     php-curl \
@@ -38,28 +39,22 @@ RUN sed -i -e 's/memory_limit = 128M/memory_limit = 256M/' /etc/php/php.ini
 RUN php -r "readfile('https://getcomposer.org/installer');" | php &&\
     mv composer.phar /usr/bin/composer && chmod +x /usr/bin/composer
 
-# Install MongoDB extension
-WORKDIR /tmp
+# Install dev packages
 RUN apk add \
     autoconf \
     automake \
     cyrus-sasl-dev \
     gcc \
-    git \
     libtool \
     make \
     musl-dev \
     openssl-dev \
-    php-dev && \
-    git clone https://github.com/mongodb/mongo-php-driver.git && \
-    cd mongo-php-driver && \
-    git submodule sync && \
-    git submodule update --init && \
-    phpize && \
-    ./configure && \
-    make all -j 5 && \
-    make install && \
-    echo 'extension=mongodb.so' > /usr/local/etc/php/conf.d/mongodb.ini
+    php-dev \
+    php-pear
+
+# Install MongoDB extension
+RUN  php /usr/share/pear/peclcmd.php install mongo && \
+    echo 'extension=mongo.so' > /etc/php/conf.d/mongo.ini
 
 WORKDIR /var/www
 CMD php ./artisan serve --host=0.0.0.0 --port=80
