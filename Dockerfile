@@ -9,31 +9,31 @@ RUN apk add \
     bash \
     git \
     nodejs \
-    php-ctype \
-    php-curl \
-    php-dom \
-    php-exif \
-    php-gd \
-    php-gettext \
-    php-iconv \
-    php-intl \
-    php-json \
-    php-ldap \
-    php-mcrypt \
-    php-openssl \
-    php-pdo_dblib \
-    php-pdo_mysql \
-    php-pdo_pgsql \
-    php-pdo_sqlite \
-    php-phar \
-    php-xml \
-    php-xmlreader \
-    php-xmlrpc \
-    php-zip \
-    php-zlib
+    php5-ctype \
+    php5-curl \
+    php5-dom \
+    php5-exif \
+    php5-gd \
+    php5-gettext \
+    php5-iconv \
+    php5-intl \
+    php5-json \
+    php5-ldap \
+    php5-mcrypt \
+    php5-openssl \
+    php5-pdo_dblib \
+    php5-pdo_mysql \
+    php5-pdo_pgsql \
+    php5-pdo_sqlite \
+    php5-phar \
+    php5-xml \
+    php5-xmlreader \
+    php5-xmlrpc \
+    php5-zip \
+    php5-zlib
 
 # Setting memory_limit directive
-RUN sed -i -e 's/memory_limit = 128M/memory_limit = 256M/' /etc/php/php.ini
+RUN sed -i -e 's/memory_limit = 128M/memory_limit = 256M/' /etc/php5/php.ini
 
 # Installing Composer
 RUN php -r "readfile('https://getcomposer.org/installer');" | php &&\
@@ -49,12 +49,12 @@ RUN apk add \
     make \
     musl-dev \
     openssl-dev \
-    php-dev \
-    php-pear
+    php5-dev \
+    php5-pear
 
 # Install MongoDB extension
 RUN  php /usr/share/pear/peclcmd.php install mongo && \
-    echo 'extension=mongo.so' > /etc/php/conf.d/mongo.ini
+    echo 'extension=mongo.so' > /etc/php5/conf.d/mongo.ini
 
 WORKDIR /var/www
 CMD php ./artisan serve --host=0.0.0.0 --port=80
