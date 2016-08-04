@@ -44,13 +44,15 @@ RUN apk add \
     autoconf \
     automake \
     cyrus-sasl-dev \
+    g++ \
     gcc \
     libtool \
     make \
     musl-dev \
     openssl-dev \
     php5-dev \
-    php5-pear
+    php5-pear \
+    python
 
 # Install MongoDB extension
 RUN  php /usr/share/pear/peclcmd.php install mongo && \
