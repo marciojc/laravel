@@ -1,7 +1,7 @@
 FROM php:alpine
 LABEL maintainer="hitalos <hitalos@gmail.com>"
 
-RUN apk update && apk upgrade && apk add bash git
+RUN apk update && apk upgrade && apk add bash git openssl
 
 # Install PHP extensions
 ADD install-php.sh /usr/sbin/install-php.sh
@@ -12,8 +12,3 @@ ENV NODE_VERSION 8.9.4
 ADD install-node.sh /usr/sbin/install-node.sh
 RUN /usr/sbin/install-node.sh
 RUN npm i -g yarn
-
-WORKDIR /var/www
-CMD php ./artisan serve --port=80 --host=0.0.0.0
-EXPOSE 80
-HEALTHCHECK --interval=1m CMD curl -f http://localhost/ || exit 1
