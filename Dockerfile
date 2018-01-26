@@ -11,4 +11,8 @@ RUN /usr/sbin/install-php.sh
 ENV NODE_VERSION 8.9.4
 ADD install-node.sh /usr/sbin/install-node.sh
 RUN /usr/sbin/install-node.sh
-RUN apk add yarn
+# Install node sass
+COPY install-node-sass.sh build.sh
+ENTRYPOINT ["/build.sh"]
+# Install Yarn
+RUN npm i -g yarn
