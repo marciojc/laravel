@@ -13,6 +13,8 @@ ADD install-node.sh /usr/sbin/install-node.sh
 RUN /usr/sbin/install-node.sh
 
 # Install node sass
+COPY install-ssh.sh /usr/sbin/install-ssh.sh
+RUN /usr/sbin/install-ssh.sh
 COPY install-node-sass.sh /usr/sbin/install-node-sass.sh
 RUN /usr/sbin/install-node-sass.sh
 # Install Yarn
