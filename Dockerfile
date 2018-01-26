@@ -11,4 +11,4 @@ RUN /usr/sbin/install-php.sh
 ENV NODE_VERSION 8.9.4
 ADD install-node.sh /usr/sbin/install-node.sh
 RUN /usr/sbin/install-node.sh
-RUN npm i -g yarn
+RUN apk add yarn

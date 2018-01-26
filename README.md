@@ -1,4 +1,4 @@
-![Docker Pulls](https://img.shields.io/docker/pulls/hitalos/laravel.svg)
+![Docker Pulls](https://img.shields.io/docker/pulls/marciojcc/laravel.svg)
 
 # laravel
 Docker image to run PHP (supporting Laravel) and Node projects.
