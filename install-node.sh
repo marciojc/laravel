@@ -3,7 +3,7 @@
 
 export CONFIG_FLAGS="--fully-static" DEL_PKGS="" RM_DIRS=/usr/include
 
-apk add --no-cache curl make gcc g++ python linux-headers paxctl libgcc libstdc++ gnupg python2
+apk add --no-cache curl make gcc g++ python linux-headers paxctl libgcc libstdc++ gnupg
 cd /tmp || exit 1
 curl -o node-v${NODE_VERSION}.tar.xz -sSL https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}.tar.xz
 xz -d node-v${NODE_VERSION}.tar.xz
@@ -22,7 +22,7 @@ if [ -x /usr/bin/npm ]; then
     npm install -g npm@${NPM_VERSION}
     find /usr/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf;
 fi
-apk del curl paxctl
+apk del paxctl python
 rm -rf /etc/ssl /node-${VERSION}.tar.gz /SHASUMS256.txt.asc /node-${VERSION} ${RM_DIRS} \
     /usr/share/man /tmp/* /var/cache/apk/* /root/.npm /root/.node-gyp /root/.gnupg \
     /usr/lib/node_modules/npm/man /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html
