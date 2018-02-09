@@ -7,5 +7,6 @@ apt-get remove cmdtest && apt remove yarn
 
 # Install dependencies
 curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
 apt-get install git nodejs -yqq
 npm install -g yarn
